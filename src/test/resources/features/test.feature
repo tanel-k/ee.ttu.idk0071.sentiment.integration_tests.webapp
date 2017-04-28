@@ -1,8 +1,5 @@
 @run
 Feature: Test Login
 
-Scenario Outline: Login Success and Failure
+Scenario:
 	Given user opens the webapp
-
-Examples:
-|||
