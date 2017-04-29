@@ -7,7 +7,11 @@ import cucumber.junit.Cucumber;
 @RunWith(Cucumber.class)
 @Cucumber.Options(
 	features = "features",
-	format = {"json:target/integration_cucumber.json"},
+	format = {
+		"pretty",
+		"html:target/cucumber-html-report",
+		"json:target/integration_cucumber.json"
+	},
 	tags = {"@run"},
 	glue = "ee.ttu.idk0071.sentiment.integration_tests.webapp.steps"
 ) 

@@ -8,7 +8,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<cucumber.version>1.0.4</cucumber.version>
-		<selenium.version>2.31.0</selenium.version>
+		<selenium.version>3.4.0</selenium.version>
 	</properties>
 
 	<dependencies>
@@ -21,19 +21,25 @@
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-core</artifactId>
 			<version>${cucumber.version}</version>
-			<scope>test</scope> 
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java</artifactId>
 			<version>${cucumber.version}</version>
-			<scope>test</scope> 
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
 			<version>${cucumber.version}</version>
-			<scope>test</scope> 
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
+			<version>${cucumber.version}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
