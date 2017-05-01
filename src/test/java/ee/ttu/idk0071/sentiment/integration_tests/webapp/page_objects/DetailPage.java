@@ -1,9 +1,9 @@
 package ee.ttu.idk0071.sentiment.integration_tests.webapp.page_objects;
 
-import org.openqa.selenium.WebDriver;
+import ee.ttu.idk0071.sentiment.integration_tests.webapp.steps.ContextSteps;
 
 public class DetailPage extends BasePage {
-	public DetailPage(WebDriver webDriver) {
-		super(webDriver);
+	public DetailPage(ContextSteps contextSteps) {
+		super(contextSteps);
 	}
 }

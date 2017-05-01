@@ -1,0 +1,55 @@
+package ee.ttu.idk0071.sentiment.integration_tests.webapp.steps;
+
+import cucumber.annotation.en.Given;
+import cucumber.annotation.en.Then;
+import ee.ttu.idk0071.sentiment.integration_tests.webapp.page_objects.NewLookupForm;
+
+public class NewLookupFormSteps {
+	protected ContextSteps contextSteps;
+	protected NewLookupForm newLookupForm;
+
+	@Given("^user opens new lookup form$")
+	public void openMainPage() {
+		this.newLookupForm.navigateTo();
+	}
+
+	@Given("^user sets keyword field to '([^']*)'$")
+	public void setKeywordTo(String keyword) {
+		this.newLookupForm.setKeywordFieldValue(keyword);
+	}
+
+	@Given("^user sets e-mail field to '([^']*)'$")
+	public void setEmailTo(String email) {
+		this.newLookupForm.setEmailFieldValue(email);
+	}
+
+	@Given("^user selects first domain option$")
+	public void selectFirstDomain() {
+		this.newLookupForm.selectFirstDomain();
+	}
+
+	@Then("^new lookup form is open$")
+	public void checkLookupFormOpen() {
+		this.newLookupForm.checkIfOpen();
+	}
+
+	@Then("^new lookup form is loaded$")
+	public void checkLookupFormLoaded() {
+		this.newLookupForm.checkIfLoaded();
+	}
+
+	@Then("^perform lookup button is disabled")
+	public void checkPerformLookupDisabled() {
+		this.newLookupForm.checkPerformLookupDisabled();
+	}
+
+	@Then("^perform lookup button is enabled")
+	public void checkPerformLookupEnabled() {
+		this.newLookupForm.checkPerformLookupEnabled();
+	}
+
+	public NewLookupFormSteps(ContextSteps contextSteps) {
+		this.contextSteps = contextSteps;
+		this.newLookupForm = new NewLookupForm(contextSteps);
+	}
+}
