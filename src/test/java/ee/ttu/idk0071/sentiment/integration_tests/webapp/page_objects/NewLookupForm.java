@@ -22,27 +22,39 @@ public class NewLookupForm extends BasePage {
 	}
 
 	public void checkPerformLookupEnabled() {
-		this.contextSteps.checkElementAttributeWithRetry(Locators.BUTTON_PERFORM_LOOKUP, "disabled", null, "Button was not enabled");
+		this.contextSteps.checkElementAttributeWithRetry(Locators.NEW_LOOKUP_FORM_BUTTON_PERFORM_LOOKUP, "disabled", "", "Button was not enabled");
 	}
 
 	public void checkPerformLookupDisabled() {
-		this.contextSteps.checkElementAttributeWithRetry(Locators.BUTTON_PERFORM_LOOKUP, "disabled", "true", "Button was enabled");
+		this.contextSteps.checkElementAttributeWithRetry(Locators.NEW_LOOKUP_FORM_BUTTON_PERFORM_LOOKUP, "disabled", "true", "Button was enabled");
 	}
 
 	public void setKeywordFieldValue(String keyword) {
-		this.contextSteps.sendKeysToElement(Locators.INPUT_KEYWORD, keyword);
+		this.contextSteps.sendKeysToElement(Locators.NEW_LOOKUP_FORM_INPUT_KEYWORD, keyword);
 	}
 
 	public void setEmailFieldValue(String email) {
-		this.contextSteps.sendKeysToElement(Locators.INPUT_EMAIL, email);
+		this.contextSteps.sendKeysToElement(Locators.NEW_LOOKUP_FORM_INPUT_EMAIL, email);
 	}
 
 	public void selectFirstDomain() {
-		this.contextSteps.selectFirstOption(Locators.SELECT_DOMAIN);
+		this.contextSteps.selectFirstOption(Locators.NEW_LOOKUP_FORM_SELECT_DOMAIN);
 	}
 
 	public void checkIfLoaded() {
 		this.contextSteps.waitUntilElementDisappearsOrFail(Locators.DIV_BLOCK_PAGE);
+	}
+
+	public void checkEmailFieldHasValue(String email) {
+		this.contextSteps.checkElementValueAttributeWithRetry(Locators.NEW_LOOKUP_FORM_INPUT_EMAIL, email, "E-mail field did not have the expected value");
+	}
+
+	public void checkKeywordFieldHasValue(String keyword) {
+		this.contextSteps.checkElementValueAttributeWithRetry(Locators.NEW_LOOKUP_FORM_INPUT_KEYWORD, keyword, "Keyword field did not have the expected value");
+	}
+
+	public void checkNoDomainsSelected() {
+		this.contextSteps.checkSelectionEmpty(Locators.NEW_LOOKUP_FORM_SELECT_DOMAIN);
 	}
 
 	public NewLookupForm(ContextSteps contextSteps) {

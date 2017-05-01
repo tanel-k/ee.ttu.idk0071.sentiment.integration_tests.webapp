@@ -7,6 +7,8 @@ Scenario:
 	Then new lookup form is open
 	And new lookup form is loaded
 	And perform lookup button is disabled
+	And e-mail field has value ''
+	And keyword field has value ''
 	# keyword set, domain not selected, no email = disabled
 	Given user sets keyword field to 'test'
 	Then perform lookup button is disabled

@@ -38,6 +38,21 @@ public class NewLookupFormSteps {
 		this.newLookupForm.checkIfLoaded();
 	}
 
+	@Then("^e-mail field has value '([^']*)'$")
+	public void checkEmailFieldValue(String email) {
+		this.newLookupForm.checkEmailFieldHasValue(email);
+	}
+
+	@Then("^no domains are selected")
+	public void checkNoDomainsSelected() {
+		this.newLookupForm.checkNoDomainsSelected();
+	}
+
+	@Then("^keyword field has value '([^']*)'$")
+	public void checkKeyWordField(String keyword) {
+		this.newLookupForm.checkKeywordFieldHasValue(keyword);
+	}
+
 	@Then("^perform lookup button is disabled")
 	public void checkPerformLookupDisabled() {
 		this.newLookupForm.checkPerformLookupDisabled();
