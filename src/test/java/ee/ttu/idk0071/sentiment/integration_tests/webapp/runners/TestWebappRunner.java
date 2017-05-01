@@ -15,6 +15,6 @@ import cucumber.junit.Cucumber;
 	tags = {"@run"},
 	glue = "ee.ttu.idk0071.sentiment.integration_tests.webapp.steps"
 ) 
-public class WebappTestRunner {
+public class TestWebappRunner {
 	
 }
