@@ -3,8 +3,9 @@ Feature: Perform lookup button is only enabled if the form is correctly filled
 
 Scenario:
 	# all form fields empty = disabled
-	Given user opens new lookup form
-		And a random string of length '10' is stored with the key '#KEYWORD#'
+	
+	Given a random string of length '10' is stored with the key '#KEYWORD#'
+	When user opens new lookup form
 	Then new lookup form is open
 		And new lookup form is loaded
 		And perform lookup button is disabled

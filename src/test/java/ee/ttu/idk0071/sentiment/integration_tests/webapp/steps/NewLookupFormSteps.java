@@ -1,14 +1,13 @@
 package ee.ttu.idk0071.sentiment.integration_tests.webapp.steps;
 
-import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
 import ee.ttu.idk0071.sentiment.integration_tests.webapp.page_objects.NewLookupForm;
 
 public class NewLookupFormSteps extends BaseSteps {
-	@Given("^user opens new lookup form$")
+	@When("^user opens new lookup form$")
 	public void openMainPage() {
-		((NewLookupForm) page).navigateTo();
+		page.navigateTo();
 	}
 
 	@When("^user clicks perform lookup button$")
@@ -38,7 +37,7 @@ public class NewLookupFormSteps extends BaseSteps {
 
 	@Then("^new lookup form is open$")
 	public void checkLookupFormOpen() {
-		((NewLookupForm) page).checkIfOpen();
+		page.checkIfOpen();
 	}
 
 	@Then("^new lookup form is loaded$")

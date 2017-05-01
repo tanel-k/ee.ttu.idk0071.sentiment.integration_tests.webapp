@@ -1,9 +1,9 @@
 @run
-Feature: Perform lookup returns id and clears inputs
+Feature: Perform lookup button triggers result dialog and clears inputs
 
 Scenario:
-	Given user opens new lookup form
-		And a random string of length '10' is stored with the key '#KEYWORD#'
+	Given a random string of length '10' is stored with the key '#KEYWORD#'
+	When user opens new lookup form
 	Then new lookup form is open
 		And new lookup form is loaded
 		And perform lookup button is disabled
@@ -19,6 +19,7 @@ Scenario:
 		And perform lookup button is disabled
 		And e-mail field has value ''
 		And keyword field has value ''
+		And no domains are selected
 
 	When user clicks lookup detail link
 		And waits for page to unlock

@@ -144,8 +144,14 @@ public class ContextSteps {
 		if (select.getOptions().isEmpty()) {
 			Assert.fail("Select element has no options");
 		} else {
-			WebElement firstOption = select.getOptions().get(0);
-			select.selectByVisibleText(firstOption.getText());
+			for (WebElement option : select.getOptions()) {
+				System.out.println("tick" + option.getText());
+				if (!StringUtils.isEmpty(option.getText())) {
+					select.selectByVisibleText(option.getText());
+					return;
+				}
+			}
+			Assert.fail("Select element has no non-empty options");
 		}
 	}
 
@@ -158,7 +164,12 @@ public class ContextSteps {
 	public void checkSelectionEmpty(By selectLocator) {
 		WebElement element = getElementOrFail(selectLocator);
 		Select select = new Select(element);
-		Assert.assertTrue("Selection was not empty", select.getAllSelectedOptions().isEmpty());
+		if (select.getAllSelectedOptions().size() == 1) {
+			WebElement selectedOption = select.getAllSelectedOptions().get(0);
+			Assert.assertTrue("Selection was not empty", StringUtils.isEmpty(selectedOption.getText()));
+		} else {
+			Assert.assertTrue("Selection was not empty", select.getAllSelectedOptions().isEmpty());
+		}
 	}
 
 	public void waitUntilElementDisappearsOrFail(By locator) {

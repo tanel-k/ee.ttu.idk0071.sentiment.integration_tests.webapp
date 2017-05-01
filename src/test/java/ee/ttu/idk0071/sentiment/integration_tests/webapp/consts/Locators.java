@@ -19,6 +19,12 @@ public class Locators {
 	// detail page locators
 	public static final By DETAIL_PAGE_CONTAINER = By.xpath("//div[@gui-id='lookup-detail-container']");
 
+	// history page locators
+	public static final By HISTORY_PAGE_CONTAINER = By.xpath("//div[@gui-id='lookup-history-container']");
+	public static final By HISTORY_PAGE_SELECT_DOMAIN = By.xpath("//select[@gui-id='domain-select']");
+	public static final By HISTORY_PAGE_BUTTON_SEARCH = By.xpath("//button[@gui-id='btn-search']");
+	public static final By HISTORY_PAGE_INPUT_KEYWORD = By.xpath("//input[@gui-id='keyword-input']");
+
 	// app-wide locators
 	public static final By DIV_BLOCK_PAGE = By.cssSelector("div.blockUI.blockOverlay");
 }

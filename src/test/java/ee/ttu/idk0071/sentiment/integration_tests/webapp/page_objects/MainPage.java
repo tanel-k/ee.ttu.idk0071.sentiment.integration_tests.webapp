@@ -8,6 +8,7 @@ import ee.ttu.idk0071.sentiment.integration_tests.webapp.consts.Locators;
 import ee.ttu.idk0071.sentiment.integration_tests.webapp.steps.ContextSteps;
 
 public class MainPage extends BasePage {
+	@Override
 	public void navigateTo() {
 		String URL = System.getenv(EnvironmentKeys.ENV_KEY_MAIN_PAGE_URL);
 		if (StringUtils.isEmpty(URL)) {
@@ -17,6 +18,7 @@ public class MainPage extends BasePage {
 		contextSteps.navigateTo(URL);
 	}
 
+	@Override
 	public void checkIfOpen() {
 		contextSteps.checkElementPresent(Locators.MAIN_PAGE_CONTAINER);
 	}
