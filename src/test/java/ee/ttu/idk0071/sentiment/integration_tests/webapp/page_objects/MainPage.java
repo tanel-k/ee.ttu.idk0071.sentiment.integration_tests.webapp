@@ -14,15 +14,15 @@ public class MainPage extends BasePage {
 			Assert.fail(EnvironmentKeys.ENV_KEY_MAIN_PAGE_URL + " not set.");
 		}
 		
-		this.contextSteps.navigateTo(URL);
+		contextSteps.navigateTo(URL);
 	}
 
 	public void checkIfOpen() {
-		this.contextSteps.checkElementPresent(Locators.MAIN_PAGE_CONTAINER);
+		contextSteps.checkElementPresent(Locators.MAIN_PAGE_CONTAINER);
 	}
 
 	public void clickOpenLookupFormLink() {
-		this.contextSteps.clickElement(Locators.MAIN_PAGE_LOOKUP_FORM_LINK);
+		contextSteps.clickElement(Locators.MAIN_PAGE_LINK_LOOKUP_FORM);
 	}
 
 	public MainPage(ContextSteps contextSteps) {

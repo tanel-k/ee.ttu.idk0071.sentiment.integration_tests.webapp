@@ -1,5 +1,6 @@
 package ee.ttu.idk0071.sentiment.integration_tests.webapp.steps;
 
+import java.util.StringTokenizer;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang3.StringUtils;
@@ -12,10 +13,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import cucumber.annotation.en.Given;
+import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
 import ee.ttu.idk0071.sentiment.integration_tests.webapp.consts.Locators;
+import ee.ttu.idk0071.sentiment.integration_tests.webapp.local_storage.StaticStorage;
 import ee.ttu.idk0071.sentiment.integration_tests.webapp.utils.Poller;
 import ee.ttu.idk0071.sentiment.integration_tests.webapp.utils.Poller.PollFailedException;
+import ee.ttu.idk0071.sentiment.integration_tests.webapp.utils.RandomValueUtils;
 import junit.framework.Assert;
 
 public class ContextSteps {
@@ -33,9 +38,53 @@ public class ContextSteps {
 		driver.get(URL);
 	}
 
+	@Given("^a random string of length '(\\d+)' is stored with the key '([^']+)'")
+	public void storeRandomString(int length, String key) {
+		StaticStorage.setString(key, RandomValueUtils.getRandomString(length));
+	}
+
 	@When("^waits for page to unlock$")
 	public void waitForPageToUnlock() {
 		waitUntilElementDisappearsOrFail(Locators.DIV_BLOCK_PAGE);
+	}
+
+	@Then("^page contains text: '([^']*)'")
+	public void checkPageContainsText(String text) {
+		String bodyText = driver.findElement(By.xpath("//body")).getText();
+		Assert.assertTrue("Page did not contain specified text", bodyText.contains(resolveText(text)));
+	}
+
+	@Then("^page contains text: '([^']*)' with case ignored")
+	public void checkPageContainsTextIgnoreCase(String text) {
+		String bodyText = driver.findElement(By.xpath("//body")).getText();
+		bodyText = bodyText.toLowerCase();
+		text = resolveText(text).toLowerCase();
+		Assert.assertTrue("Page did not contain specified text", bodyText.contains(text));
+	}
+
+	protected String resolveText(String text) {
+		StringTokenizer tokenizer = new StringTokenizer(text, " ");
+		StringBuilder buffer = new StringBuilder();
+		
+		while (tokenizer.hasMoreTokens()) {
+			String token = tokenizer.nextToken();
+			token = resolveValue(token);
+			buffer.append(token);
+			if (tokenizer.hasMoreTokens()) {
+				buffer.append(" ");
+			}
+		}
+		
+		return buffer.toString();
+	}
+
+	protected String resolveValue(String value) {
+		String resolved = StaticStorage.getString(value);
+		if (resolved != null) {
+			return resolved;
+		}
+		
+		return value;
 	}
 
 	public void checkElementPresent(By locator) {
@@ -47,7 +96,11 @@ public class ContextSteps {
 		clickable.click();
 	}
 
-	public void checkElementValueAttributeWithRetry(By locator, String expectedValue, String failureMessage) {
+	public void checkElementValueAttributeWithRetry(By locator, String expectedValue, boolean resolveFromStorage, String failureMessage) {
+		if (resolveFromStorage) {
+			expectedValue = resolveValue(expectedValue);
+		}
+		
 		expectedValue = StringUtils.defaultString(expectedValue, "");
 		checkElementAttributeWithRetry(locator, "value", expectedValue, failureMessage);
 	}
@@ -74,11 +127,15 @@ public class ContextSteps {
 		}
 	}
 
-	public void sendKeysToElement(By locator, String value) {
+	public void sendValueToElement(By locator, String value) {
 		WebElement element = getElementOrFail(locator);
 		value = StringUtils.defaultString(value, "");
 		element.clear();
 		element.sendKeys(value);
+	}
+
+	public void sendResolvedValueToElement(By locator, String value) {
+		sendValueToElement(locator, resolveValue(value));
 	}
 
 	public void selectFirstOption(By selectLocator) {
@@ -87,7 +144,6 @@ public class ContextSteps {
 		if (select.getOptions().isEmpty()) {
 			Assert.fail("Select element has no options");
 		} else {
-			System.out.println("selecting");
 			WebElement firstOption = select.getOptions().get(0);
 			select.selectByVisibleText(firstOption.getText());
 		}

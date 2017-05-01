@@ -5,27 +5,23 @@ import cucumber.annotation.en.Then;
 import cucumber.annotation.en.When;
 import ee.ttu.idk0071.sentiment.integration_tests.webapp.page_objects.MainPage;
 
-public class MainPageSteps {
-	protected ContextSteps contextSteps;
-	protected MainPage mainPage;
-
+public class MainPageSteps extends BaseSteps {
 	@Given("^user opens main page$")
 	public void userOpensMainPage() {
-		this.mainPage.navigateTo();
+		((MainPage) page).navigateTo();
 	}
 
 	@When("^user clicks link to open new lookup form$")
 	public void clickOpenLookupFormLink() {
-		this.mainPage.clickOpenLookupFormLink();
+		((MainPage) page).clickOpenLookupFormLink();
 	}
 
 	@Then("^main page is open$")
 	public void checkMainPageOpen() {
-		this.mainPage.checkIfOpen();
+		((MainPage) page).checkIfOpen();
 	}
 
 	public MainPageSteps(ContextSteps contextSteps) {
-		this.contextSteps = contextSteps;
-		this.mainPage = new MainPage(contextSteps);
+		super(contextSteps, new MainPage(contextSteps));
 	}
 }

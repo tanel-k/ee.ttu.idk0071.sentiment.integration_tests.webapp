@@ -4,6 +4,7 @@ Feature: Perform lookup button is only enabled if the form is correctly filled
 Scenario:
 	# all form fields empty = disabled
 	Given user opens new lookup form
+		And a random string of length '10' is stored with the key '#KEYWORD#'
 	Then new lookup form is open
 		And new lookup form is loaded
 		And perform lookup button is disabled
@@ -11,7 +12,7 @@ Scenario:
 		And keyword field has value ''
 
 	# keyword set, domain not selected, no email = disabled
-	When user sets keyword field to 'test'
+	When user sets keyword field to '#KEYWORD#'
 	Then perform lookup button is disabled
 
 	# keyword set, domain selected, no email = enabled
@@ -23,7 +24,7 @@ Scenario:
 	Then perform lookup button is disabled
 
 	# keyword set, domain selected, good email = enabled
-	When user sets e-mail field to 'bad@email.com'
+	When user sets e-mail field to 'good@email.com'
 	Then perform lookup button is enabled
 
 	# keyword set, domain selected, no email = enabled
