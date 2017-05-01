@@ -38,7 +38,7 @@ public class ContextSteps {
 		driver.get(URL);
 	}
 
-	@Given("^a random string of length '(\\d+)' is stored with the key '([^']+)'")
+	@Given("^a random string of length '(\\d+)' is stored with the key '([^']+)'$")
 	public void storeRandomString(int length, String key) {
 		StaticStorage.setString(key, RandomValueUtils.getRandomString(length));
 	}
@@ -48,13 +48,13 @@ public class ContextSteps {
 		waitUntilElementDisappearsOrFail(Locators.DIV_BLOCK_PAGE);
 	}
 
-	@Then("^page contains text: '([^']*)'")
+	@Then("^page contains text: '([^']*)'$")
 	public void checkPageContainsText(String text) {
 		String bodyText = driver.findElement(By.xpath("//body")).getText();
 		Assert.assertTrue("Page did not contain specified text", bodyText.contains(resolveText(text)));
 	}
 
-	@Then("^page contains text: '([^']*)' with case ignored")
+	@Then("^page contains text: '([^']*)' with case ignored$")
 	public void checkPageContainsTextIgnoreCase(String text) {
 		String bodyText = driver.findElement(By.xpath("//body")).getText();
 		bodyText = bodyText.toLowerCase();
@@ -145,7 +145,6 @@ public class ContextSteps {
 			Assert.fail("Select element has no options");
 		} else {
 			for (WebElement option : select.getOptions()) {
-				System.out.println("tick" + option.getText());
 				if (!StringUtils.isEmpty(option.getText())) {
 					select.selectByVisibleText(option.getText());
 					return;

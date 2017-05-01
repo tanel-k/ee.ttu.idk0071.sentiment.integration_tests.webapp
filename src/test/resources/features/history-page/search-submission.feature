@@ -14,4 +14,4 @@ Scenario:
 
 	When user clicks search button
 		And waits for page to unlock
-	Then page contains text 'Historic sentiment data for #KEYWORD#' with case ignored
+	Then page contains text: 'Historic sentiment data for #KEYWORD#' with case ignored
