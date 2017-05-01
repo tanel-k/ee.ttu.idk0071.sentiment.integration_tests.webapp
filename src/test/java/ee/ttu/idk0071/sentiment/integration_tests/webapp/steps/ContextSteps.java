@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import cucumber.annotation.en.When;
+import ee.ttu.idk0071.sentiment.integration_tests.webapp.consts.Locators;
 import ee.ttu.idk0071.sentiment.integration_tests.webapp.utils.Poller;
 import ee.ttu.idk0071.sentiment.integration_tests.webapp.utils.Poller.PollFailedException;
 import junit.framework.Assert;
@@ -29,6 +31,11 @@ public class ContextSteps {
 
 	public void navigateTo(String URL) {
 		driver.get(URL);
+	}
+
+	@When("^waits for page to unlock$")
+	public void waitForPageToUnlock() {
+		waitUntilElementDisappearsOrFail(Locators.DIV_BLOCK_PAGE);
 	}
 
 	public void checkElementPresent(By locator) {

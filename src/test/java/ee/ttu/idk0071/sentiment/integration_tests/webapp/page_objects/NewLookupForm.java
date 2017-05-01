@@ -57,6 +57,10 @@ public class NewLookupForm extends BasePage {
 		this.contextSteps.checkSelectionEmpty(Locators.NEW_LOOKUP_FORM_SELECT_DOMAIN);
 	}
 
+	public void clickPerformLookup() {
+		this.contextSteps.clickElement(Locators.NEW_LOOKUP_FORM_BUTTON_PERFORM_LOOKUP);
+	}
+
 	public NewLookupForm(ContextSteps contextSteps) {
 		super(contextSteps);
 	}

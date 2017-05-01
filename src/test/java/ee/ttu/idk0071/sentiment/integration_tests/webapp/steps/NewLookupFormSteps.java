@@ -2,6 +2,7 @@ package ee.ttu.idk0071.sentiment.integration_tests.webapp.steps;
 
 import cucumber.annotation.en.Given;
 import cucumber.annotation.en.Then;
+import cucumber.annotation.en.When;
 import ee.ttu.idk0071.sentiment.integration_tests.webapp.page_objects.NewLookupForm;
 
 public class NewLookupFormSteps {
@@ -13,17 +14,22 @@ public class NewLookupFormSteps {
 		this.newLookupForm.navigateTo();
 	}
 
-	@Given("^user sets keyword field to '([^']*)'$")
+	@When("^user clicks perform lookup button$")
+	public void clickPerformLookup() {
+		this.newLookupForm.clickPerformLookup();
+	}
+
+	@When("^user sets keyword field to '([^']*)'$")
 	public void setKeywordTo(String keyword) {
 		this.newLookupForm.setKeywordFieldValue(keyword);
 	}
 
-	@Given("^user sets e-mail field to '([^']*)'$")
+	@When("^user sets e-mail field to '([^']*)'$")
 	public void setEmailTo(String email) {
 		this.newLookupForm.setEmailFieldValue(email);
 	}
 
-	@Given("^user selects first domain option$")
+	@When("^user selects first domain option$")
 	public void selectFirstDomain() {
 		this.newLookupForm.selectFirstDomain();
 	}
