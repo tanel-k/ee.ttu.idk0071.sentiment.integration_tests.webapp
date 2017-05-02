@@ -206,8 +206,7 @@ public class ContextSteps {
 	}
 
 	protected WebElement getElementWithTimeout(By locator) throws TimeoutException {
-		return (new WebDriverWait(getDriver(), DEFAULT_TIMEOUT_SECONDS))
-				.until(ExpectedConditions.presenceOfElementLocated(locator));
+		return getElementWithTimeout(locator, DEFAULT_TIMEOUT_SECONDS);
 	}
 
 	protected WebElement getElementWithTimeout(By locator, int timeoutSeconds) throws TimeoutException {
